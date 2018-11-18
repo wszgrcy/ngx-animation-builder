@@ -8,10 +8,10 @@
   </mat-step>
   <mat-step [stepControl]="secondFormGroup" [formGroup]="secondFormGroup" [optional]="true">
     <ng-template matStepLabel>定义动画</ng-template>
-    正在编写
+    <app-keyframe-list [list]="css2Ts?.keyframeObject|keyvalue "></app-keyframe-list>
     <div>
       <button mat-button matStepperPrevious>上一步</button>
-      <button mat-button matStepperNext>下一步</button>
+      <button mat-button matStepperNext (click)="generateFile()">下一步</button>
     </div>
   </mat-step>
   <mat-step>

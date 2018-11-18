@@ -1,0 +1,9 @@
+.property-item {
+
+  //   input:focus {
+  //     display: none
+  //   }
+  input::blur {
+    display: none
+  }
+}

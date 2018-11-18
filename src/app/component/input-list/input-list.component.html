@@ -1,0 +1,5 @@
+<app-input-item *ngFor="let item of value; let i=index;trackBy: trackByFn" [(ngModel)]="value[i]" (ngModelChange)="valueChange(i,item)"
+  [disabled]="item&&item.indexOf('offset')!==-1" name="{{i}}"></app-input-item>
+<button mat-mini-fab (click)="addItem()">
+  <mat-icon aria-label="添加一个样式">add</mat-icon>
+</button>

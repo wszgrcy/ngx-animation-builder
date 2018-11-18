@@ -1,0 +1,45 @@
+@import '../../../assets/theme/md-theme.scss';
+@import '~@angular/material/theming';
+
+$primary-color:mat-color($candy-app-primary);
+$line-height:36px;
+$border-width:1px;
+
+span {
+  border-radius: 90px;
+  background: $primary-color !important;
+  color: white !important;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+span,
+input {
+  font-size: 14px;
+  line-height: $line-height;
+  border-radius: 90px;
+  text-align: center;
+  border: $border-width solid $primary-color;
+  outline: none;
+  min-height: $line-height+$border-width*2;
+}
+
+input {
+  padding: 0;
+  box-sizing: border-box;
+  @include mat-elevation-transition;
+
+  @include mat-elevation(8);
+}
+
+:host {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  &>div {
+    display: flex
+  }
+}

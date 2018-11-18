@@ -1,10 +1,1 @@
-/* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/theming';
-@include mat-core();
-$candy-app-primary: mat-palette($mat-indigo);
-$candy-app-accent: mat-palette($mat-pink, A200, A100, A400);
-// $aaa:map-get();
-/*设置主题**/
-$candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent);
-/**如果有一个那么直接导入了*/
-@include angular-material-theme($candy-app-theme);
+@import './assets/theme/md-theme.scss'

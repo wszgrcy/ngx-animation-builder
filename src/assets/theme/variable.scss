@@ -1,0 +1,6 @@
+@import '~@angular/material/theming';
+$candy-app-primary: mat-palette($mat-indigo);
+$candy-app-accent: mat-palette($mat-pink, A200, A100, A400);
+// $aaa:map-get();
+/*设置主题**/
+$candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent);
