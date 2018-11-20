@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  declarations: [InputListComponent, InputItemComponent],
+  declarations: [InputListComponent, InputItemComponent,],
   imports: [
     CommonModule,
     FormsModule,

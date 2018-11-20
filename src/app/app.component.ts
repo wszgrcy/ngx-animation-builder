@@ -21,7 +21,6 @@ export class AppComponent {
   }
 
   isLinear = false;
-  secondFormGroup: FormGroup;
   /**导入css */
   css2TsFormGroup: FormGroup
 
@@ -41,9 +40,9 @@ export class AppComponent {
     }, { validator: [validateOneOf()] });
     console.log(this.css2TsFormGroup)
 
-    this.secondFormGroup = this.fb.group({
-      secondCtrl: ['', Validators.required]
-    });
+    // this.secondFormGroup = this.fb.group({
+    //   secondCtrl: ['', Validators.required]
+    // });
   }
 
 

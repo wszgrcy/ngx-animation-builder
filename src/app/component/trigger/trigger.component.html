@@ -1,0 +1,36 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>trigger名: <mat-form-field>
+        <input matInput placeholder="请输入">
+      </mat-form-field>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-form-field>
+      <mat-select placeholder="请选择添加类型" [(ngModel)]="selectedType" name="selectedType">
+        <mat-option *ngFor="let item of definitionOptions; let i=index" [value]="item.value">
+          {{item.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-mini-fab (click)="addTrigger()">
+      <mat-icon aria-label="添加一个样式">add</mat-icon>
+    </button>
+    <ng-container *ngFor="let item of css2Ts.triggerList">
+    </ng-container>
+    <div #triggerContainer></div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>生成</button>
+    <button mat-button>删除</button>
+  </mat-card-actions>
+</mat-card>
+
+<ng-template let-option let-i="index" #triggerState>
+  <app-trigger-state [options]="option" [(ngModel)]="value[i]"></app-trigger-state>
+</ng-template>
+<ng-template #triggerTransition let-option let-i="index">
+  <app-trigger-transition [options]="option" [(ngModel)]="value[i]"></app-trigger-transition>
+</ng-template>

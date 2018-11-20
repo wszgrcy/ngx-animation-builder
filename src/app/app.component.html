@@ -6,14 +6,23 @@
       <button mat-button matStepperNext>下一步</button>
     </div>
   </mat-step>
-  <mat-step [stepControl]="secondFormGroup" [formGroup]="secondFormGroup" [optional]="true">
-    <ng-template matStepLabel>定义动画</ng-template>
+  <mat-step   [optional]="true">
+    <ng-template matStepLabel>修改关键帧</ng-template>
     <app-keyframe-list [list]="css2Ts?.keyframeObject|keyvalue "></app-keyframe-list>
+    <div>
+      <button mat-button matStepperPrevious>上一步</button>
+      <button mat-button matStepperNext>下一步</button>
+    </div>
+  </mat-step>
+  <mat-step  [optional]="true">
+    <ng-template matStepLabel>定义动画</ng-template>
+    <app-trigger></app-trigger>
     <div>
       <button mat-button matStepperPrevious>上一步</button>
       <button mat-button matStepperNext (click)="generateFile()">下一步</button>
     </div>
   </mat-step>
+
   <mat-step>
     <ng-template matStepLabel>下载ts文件</ng-template>
     <a [href]="ngAnimation.url" [download]="ngAnimation.fileName">下载文件</a>

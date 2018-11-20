@@ -27,17 +27,16 @@ function transfromProgress(str: string) {
         })
 }
 
-/**转化为驼峰法 */
+/**转化为小驼峰法 */
 function transfromPropertyName(name: string): string {
     let propertyNameArray = name.split('');
     for (let i = 0; i < propertyNameArray.length; i++) {
         const letter = propertyNameArray[i];
-        if (/-/.test(letter)) {
-            propertyNameArray.splice(i, 1)
-            propertyNameArray[i] = propertyNameArray[i].toLocaleUpperCase()
-        }
+        if (!/-/.test(letter)) continue;
+        propertyNameArray.splice(i, 1)
+        propertyNameArray[i] = propertyNameArray[i].toLocaleUpperCase()
+
     }
-    // console.log('返回值', propertyNameArray.join(''))
     return propertyNameArray.join('')
 }
 
@@ -53,7 +52,9 @@ export class Css2TsService {
     /**保存的是处理之前的css数组 */
     array: CSSKeyframesRule[];
     /**关键帧常量字符串数组 */
-    animationArray: any[] = []
+    animationArray: any[] = [];
+    /**组成真正能用的动画 */
+    triggerList:any[]=[]
     /**
      * @description 关键帧对象,
      * @memberof Css2Ts
@@ -62,6 +63,7 @@ export class Css2TsService {
     cssFile: File;
     tsFile: File
     cssStyleSheet: CSSStyleSheet;
+
     private cssType: CssType = {}
     constructor() {
         // if (cssType.file) this.cssFile = cssType.file

@@ -15,6 +15,7 @@ import { KeyframeListModule } from './keyframe-list/keyframe-list.module';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { InputListComponent } from './component/input-list/input-list.component';
 import { InputModule } from './component/input.module';
+import { TriggerModule } from './component/trigger/trigger.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { InputModule } from './component/input.module';
     FormsModule,
     KeyframeListModule,
     FlexLayoutModule,
-    InputModule
+    InputModule,
+    TriggerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

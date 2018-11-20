@@ -22,7 +22,6 @@ export class KeyframeItemComponent implements OnInit, ControlValueAccessor {
   constructor(private css2Ts: Css2TsService) { }
 
   ngOnInit() {
-    console.log(this.item)
   }
 
   writeValue(value) {
