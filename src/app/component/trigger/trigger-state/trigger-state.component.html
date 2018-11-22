@@ -17,14 +17,14 @@
     </mat-form-field>
     <div class="column-layout">
       <mat-form-field>
-        <mat-select placeholder="请选择某一关键帧" formControlName="cssStr" [disabled]="!formGroup.controls.keyframeRule.value">
-          <mat-option *ngFor="let item of keyframeOptions|keyvalue" [value]="item.value.join(',')">
+        <mat-select placeholder="请选择某一关键帧" formControlName="keyframeList">
+          <mat-option *ngFor="let item of keyframeOptions|keyvalue" [value]="item.value">
             {{item.value|json}}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field class="">
-        <textarea matInput placeholder="请输入css样式" formControlName="cssStr" cdkTextareaAutosize cdkAutosizeMinRows="1"></textarea>
+        <textarea matInput placeholder="请输入css样式(小驼峰)" formControlName="cssStr" cdkTextareaAutosize cdkAutosizeMinRows="1"></textarea>
       </mat-form-field>
     </div>
 

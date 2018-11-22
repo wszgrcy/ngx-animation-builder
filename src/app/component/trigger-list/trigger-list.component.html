@@ -1,0 +1,6 @@
+<div *ngFor="let item of css2Ts.triggerList; let i=index">
+  <app-trigger [(ngModel)]="css2Ts.triggerList[i]"></app-trigger>
+</div>
+<button mat-mini-fab (click)="addTrigger()">
+  <mat-icon aria-label="添加一个样式">add</mat-icon>
+</button>

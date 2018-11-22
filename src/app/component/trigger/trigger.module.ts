@@ -11,9 +11,11 @@ import { TriggerStateComponent } from './trigger-state/trigger-state.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TriggerTransitionComponent } from './trigger-transition/trigger-transition.component';
+import { TriggerListComponent } from '../trigger-list/trigger-list.component';
 
 @NgModule({
-    declarations: [TriggerComponent, TriggerStateComponent, TriggerTransitionComponent],
+    declarations: [TriggerComponent, TriggerStateComponent, TriggerTransitionComponent,
+        TriggerListComponent],
     imports: [
         CommonModule,
         MatCardModule,
@@ -26,7 +28,7 @@ import { TriggerTransitionComponent } from './trigger-transition/trigger-transit
         FormsModule,
         ReactiveFormsModule
     ],
-    exports: [TriggerComponent],
+    exports: [TriggerComponent,TriggerListComponent],
     providers: [],
 })
 export class TriggerModule { }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Provider, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormGroup, FormBuilder } from '@angular/forms';
-import { combineLatest } from 'rxjs/operators';
+import { combineLatest, filter } from 'rxjs/operators';
 const TRIGGER_TRANSITION: Provider = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => TriggerTransitionComponent),
@@ -24,13 +24,18 @@ export class TriggerTransitionComponent implements OnInit, ControlValueAccessor 
   ngOnInit() {
     console.log(this.options)
     this.formGroup = this.fb.group({
-      keyframeName: [''],
-      keyframeRule: [null],
+      keyframeRule: [''],
       stateChangeExpr: ['']
     })
-    this.formGroup.valueChanges.subscribe((val) => {
-      console.log('查看g', val)
-    })
+    this.formGroup.valueChanges.
+      pipe(
+        filter((val) => val),
+        filter((val: string[]) => Object.values(val).filter((val) => val).length == 2)
+      ).
+      subscribe((val) => {
+        console.log('查看g', val)
+        this.valueChange(val)
+      })
   }
   writeValue(value: string) {
     if (value === undefined) return;
@@ -43,7 +48,13 @@ export class TriggerTransitionComponent implements OnInit, ControlValueAccessor 
     this.touchFn = fn
   }
   valueChange(value) {
-    this.changeFn(value);
-    this.touchFn(value)
+    let template = `
+    transition('${value.stateChangeExpr}', [
+      useAnimation(${value.keyframeRule})
+  ])
+    `
+    console.log(template)
+    this.changeFn(template);
+    this.touchFn(template)
   }
 }

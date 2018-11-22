@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Provider, forwardRef, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormGroup, FormBuilder, FormControl } from '@angular/forms';
-import { tap, startWith, map } from 'rxjs/operators';
+import { tap, startWith, map, filter } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { keyframes } from '@angular/animations';
 const TRIGGER_STATE: Provider = {
@@ -49,13 +49,18 @@ export class TriggerStateComponent implements OnInit, ControlValueAccessor {
         (<FormControl>this.formGroup.controls.cssStr).patchValue(val, { emitEvent: false })
         this.valueChange(val)
       })
-    // this.formGroup.controls.keyframeRule.valueChanges.
-    //   pipe(startWith('')).
-    //   subscribe((val) => {
-    //     if (!val) {
-    //       this.formGroup.controls.cssStr.disable()
-    //     }
-    //   })
+    this.formGroup.controls.keyframeRule.valueChanges.
+      pipe(startWith('')).
+      subscribe((val) => {
+        !val ? this.formGroup.controls.keyframeList.disable() : this.formGroup.controls.keyframeList.enable()
+
+      })
+    this.formGroup.controls.keyframeList.valueChanges.pipe(
+      filter((val) => val),
+    ).
+      subscribe((val: string[]) => {
+        this.formGroup.patchValue({ cssStr: val.filter((val) => !/offset/.test(val)).join(',') })
+      })
   }
   keyframesSelected() {
 

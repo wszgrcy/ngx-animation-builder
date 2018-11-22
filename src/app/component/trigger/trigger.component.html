@@ -1,8 +1,9 @@
 <mat-card class="example-card">
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>trigger名: <mat-form-field>
-        <input matInput placeholder="请输入">
+    <mat-card-title>
+      <mat-form-field>
+        <div matPrefix>触发器名词:</div>
+        <input matInput placeholder="请输入触发器名称">
       </mat-form-field>
     </mat-card-title>
   </mat-card-header>
@@ -23,7 +24,7 @@
     <div #triggerContainer></div>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button>生成</button>
+    <button mat-button (click)="valueChange()">生成</button>
     <button mat-button>删除</button>
   </mat-card-actions>
 </mat-card>

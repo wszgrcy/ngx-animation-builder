@@ -7,7 +7,7 @@
   </div>
   <mat-form-field>
     <mat-select placeholder="请选择关键帧规则" formControlName="keyframeRule">
-      <mat-option *ngFor="let item of options|keyvalue" [value]="item.value">
+      <mat-option *ngFor="let item of options|keyvalue" [value]="item.key">
         {{item.key}}
       </mat-option>
     </mat-select>
