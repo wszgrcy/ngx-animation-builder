@@ -15,4 +15,7 @@ export class TriggerListComponent implements OnInit {
   addTrigger() {
     this.css2Ts.triggerList.push(null)
   }
+  trackByFn(index, value) {
+    return index
+  }
 }

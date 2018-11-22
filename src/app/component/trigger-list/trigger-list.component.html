@@ -1,4 +1,4 @@
-<div *ngFor="let item of css2Ts.triggerList; let i=index">
+<div *ngFor="let item of css2Ts.triggerList; let i=index;trackBy:trackByFn">
   <app-trigger [(ngModel)]="css2Ts.triggerList[i]"></app-trigger>
 </div>
 <button mat-mini-fab (click)="addTrigger()">

@@ -1,5 +1,7 @@
+import { TriggerState, TriggerTransition } from './../model/animation.model';
 import { Injectable } from '@angular/core';
 import { animation, animate, keyframes, style } from "@angular/animations";
+import { Trigger } from '../model/animation.model';
 import * as CSSOM from "cssom";
 
 
@@ -54,7 +56,7 @@ export class Css2TsService {
     /**关键帧常量字符串数组 */
     animationArray: any[] = [];
     /**组成真正能用的动画 */
-    triggerList:any[]=[]
+    triggerList: Trigger[] = []
     /**
      * @description 关键帧对象,
      * @memberof Css2Ts
@@ -201,7 +203,7 @@ export class Css2TsService {
      * @memberof Css2Ts
      */
     private addTsHeader() {
-        this.tsRaw = `import { animation, animate, keyframes, style } from "@angular/animations";
+        this.tsRaw = `import { animation, animate, keyframes, style,trigger,state,transition,useAnimation } from "@angular/animations";
         ${this.animationArray.join('')}`
         return this
     }
@@ -210,8 +212,51 @@ export class Css2TsService {
         this.tsFile = new File([this.tsRaw], fileName, { type: 'text/plain;charset=utf-8' })
         return this
     }
+    private addTrigger() {
+        console.log(this.triggerList)
+        let triggerStr = this.triggerList.map((val) => {
+            console.log(val)
+            let triggerA = val.value.map((item) => {
+                console.log(item, item.type)
+                let template = ''
+                switch (item.type) {
+                    case 1:
+                        template = `
+                        state('${(<TriggerState>item).stateName}', style({
+                            ${(<TriggerState>item).cssStr}
+                        }))`
+                        break;
+                    case 2:
+                        template = `
+                        transition('${(<TriggerTransition>item).stateChangeExpr}', [
+                            useAnimation(${(<TriggerTransition>item).keyframeRule})
+                        ])`
+                        break;
+                    default:
+                        break;
+                }
+                console.log(template)
+                return template
+            }).join(',')
+            let template = `
+            trigger('${val.name}', [
+               ${triggerA}
+              ])
+            `
+            console.log(template)
+            return template
+        }).join(',')
+        this.tsRaw = `${this.tsRaw}
+        export const OutPutTrigger = [
+        ${triggerStr}
+        ]
+        `
+        console.log(triggerStr)
+        return this;
+    }
     public update() {
-        this.arrayToTs().addTsHeader().toFile()
+        this.addTrigger()
+        this.arrayToTs().addTsHeader().addTrigger().toFile()
     }
 }
 

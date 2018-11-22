@@ -30,7 +30,8 @@ export class TriggerStateComponent implements OnInit, ControlValueAccessor {
       keyframeRule: [''],
       cssStr: [''],
       stateName: [''],
-      keyframeList: []
+      keyframeList: [],
+      type: [1]
     })
     console.log(this.formGroup);
     this.keyframesOptions = (<FormControl>this.formGroup.controls.keyframeRule).valueChanges.pipe(
@@ -92,14 +93,14 @@ export class TriggerStateComponent implements OnInit, ControlValueAccessor {
    * @memberof TriggerStateComponent
    */
   valueChange(value) {
-    let template = `
-    state('${this.formGroup.value.stateName}', style({
-     ${this.formGroup.value.cssStr}
-    }))
-    `
-    console.log('准备发射', template)
-    this.changeFn(template);
-    this.touchFn(template)
+    // let template = `
+    // state('${this.formGroup.value.stateName}', style({
+    //  ${this.formGroup.value.cssStr}
+    // }))
+    // `
+    // console.log('准备发射', template)
+    this.changeFn(this.formGroup.value);
+    this.touchFn(this.formGroup.value)
   }
   keyframeSelectChange() {
 
