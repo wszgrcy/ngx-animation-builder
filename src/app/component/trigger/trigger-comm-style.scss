@@ -8,3 +8,8 @@
   flex-direction: column;
 
 }
+
+mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+}

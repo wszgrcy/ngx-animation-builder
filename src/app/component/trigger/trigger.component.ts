@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewContainerRef, TemplateRef, Provider, forwardRef, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, TemplateRef, Provider, forwardRef, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { Css2TsService } from '../../cssformater/css';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { TriggerStateComponent } from './trigger-state/trigger-state.component';
@@ -16,7 +16,8 @@ const TRIGGER: Provider = {
 export class TriggerComponent implements OnInit, ControlValueAccessor {
   @ViewChild('triggerContainer', { read: ViewContainerRef }) triggerContainer: ViewContainerRef;
   @ViewChild('triggerState') triggerState: TemplateRef<any>
-  @ViewChild('triggerTransition') triggerTransition: TemplateRef<any>
+  @ViewChild('triggerTransition') triggerTransition: TemplateRef<any>;
+  @Output() delete: EventEmitter<void> = new EventEmitter()
   selectedType: number;
   definitionOptions = [
     { label: '状态类', value: 1 },
@@ -33,13 +34,14 @@ export class TriggerComponent implements OnInit, ControlValueAccessor {
   ) { }
 
   ngOnInit() {
-    // setInterval(() => {
-    //   console.log(this.value)
-    // }, 5000)
     this.formGroup = this.fb.group({
-      triggerName: [''],
+      id: [''],
+      name: [''],
       value: this.fb.array([]),
       selectedType: [null]
+    })
+    this.formGroup.valueChanges.subscribe((val) => {
+      this.valueChange()
     })
   }
   addTrigger() {
@@ -62,10 +64,14 @@ export class TriggerComponent implements OnInit, ControlValueAccessor {
         break;
     }
     this.cd.detectChanges()
+
   }
   writeValue(value: any) {
     if (value === undefined || value === null) return;
-    this.value = value;
+    console.log(value);
+    // this.formGroup.patchValue({ id: value.id })
+    this.formGroup.patchValue(value)
+    // this.value = value;
   }
   registerOnChange(fn: Function) {
     this.changeFn = fn
@@ -74,11 +80,9 @@ export class TriggerComponent implements OnInit, ControlValueAccessor {
     this.touchFn = fn
   }
   valueChange() {
-    let value = {
-      name: this.formGroup.value.triggerName,
-      value: this.formGroup.value.value
-    }
-    console.log(value)
+    if (!this.formGroup.value.id) return;
+    let value = this.formGroup.value
+    console.log('发送', value)
     this.changeFn(value);
     this.touchFn(value)
   }

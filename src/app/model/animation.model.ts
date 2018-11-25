@@ -12,7 +12,9 @@ export interface TriggerTransition extends TriggerCore {
     keyframeRule: string
 }
 export interface Trigger {
-    name: string;
-    value: (TriggerState | TriggerTransition)[]
+    id?:number;
+
+    name?: string;
+    value?: (TriggerState | TriggerTransition)[]
 }
 // export type Trigger = TriggerState | TriggerTransition 

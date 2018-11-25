@@ -13,9 +13,15 @@ export class TriggerListComponent implements OnInit {
   ngOnInit() {
   }
   addTrigger() {
-    this.css2Ts.triggerList.push(null)
+    this.css2Ts.triggerList.push({ id: Date.now() })
   }
   trackByFn(index, value) {
-    return index
+    // console.log('排序', value)
+    return value.id
+  }
+  deleteTrigger(i) {
+    console.log(this.css2Ts.triggerList)
+    console.log('触发', i)
+    this.css2Ts.triggerList.splice(i, 1)
   }
 }

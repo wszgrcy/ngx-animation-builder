@@ -1,0 +1,12 @@
+.column-layout {
+  flex: 1;
+}
+
+:host {
+  display: block;
+  padding: 1rem;
+
+  &>div {
+    padding: 1rem;
+  }
+}
