@@ -8,7 +8,7 @@ import { Css2TsService } from '../../cssformater/css';
 })
 export class TriggerListComponent implements OnInit {
   list = []
-  constructor(private css2Ts: Css2TsService) { }
+  constructor(public css2Ts: Css2TsService) { }
 
   ngOnInit() {
   }

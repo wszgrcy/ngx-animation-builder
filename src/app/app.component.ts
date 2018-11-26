@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-// import  "../../src/assets/src/loader"
-// declare const CSSOM;
-// declare const cssom;
-import * as CSSOM from "cssom";
-import { FileParam, required, SelectedFile } from './decorator/file';
+import {  SelectedFile } from './decorator/file';
 import { Css2TsService, CssType } from './cssformater/css';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormBuilder, Validators, FormGroup, ValidatorFn, FormControl } from '@angular/forms';
