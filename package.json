@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 4204",
-    "build": "ng build",
+    "build": "ng build --prod",
+    "postbuild":"node ./compress.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
