@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Injector } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,18 +9,14 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { KeyframeListComponent } from './keyframe-list/keyframe-list.component';
-import { KeyframeItemComponent } from './keyframe-list/keyframe-item/keyframe-item.component';
 import { KeyframeListModule } from './keyframe-list/keyframe-list.module';
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { InputListComponent } from './component/input-list/input-list.component';
 import { InputModule } from './component/input.module';
 import { TriggerModule } from './component/trigger/trigger.module';
-
+import { createCustomElement } from "@angular/elements";
 @NgModule({
   declarations: [
     AppComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -38,6 +34,20 @@ import { TriggerModule } from './component/trigger/trigger.module';
     TriggerModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  //doc 采用正常启动方式
+  // bootstrap: [AppComponent],
+  entryComponents: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  //doc 构造时注册一个自定义元素,
+  constructor(injector: Injector) {
+    let customElement = createCustomElement(AppComponent, { injector })
+    customElements.define('custom-root', customElement);
+
+  }
+  //doc 启动时创建一个自定义元素元素
+  ngDoBootstrap() {
+    let a = document.createElement('custom-root')
+    document.body.appendChild(a)
+  }
+}
