@@ -22,7 +22,7 @@ try {
 }
 // console.log(jsonConfig)
 let dir = path.join(__dirname, root, outputPath)
-let jsList = ['runtime.js', 'polyfills.js', 'scripts.js', 'main.js']
+let jsList = ['runtime.js', 'polyfills.js', 'scripts.js', 'main.js', 'styles.js']
 let jsRawList = []
 jsList.forEach((val) => {
   jsRawList.push(readFileSync(path.join(dir, val), {

@@ -14,6 +14,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { InputModule } from './component/input.module';
 import { TriggerModule } from './component/trigger/trigger.module';
 import { createCustomElement } from "@angular/elements";
+import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +48,10 @@ export class AppModule {
   }
   //doc 启动时创建一个自定义元素元素
   ngDoBootstrap() {
-    let a = document.createElement('custom-root')
-    document.body.appendChild(a)
+    if (!environment.production) {
+      let a = document.createElement('custom-root')
+      document.body.appendChild(a)
+
+    }
   }
 }
