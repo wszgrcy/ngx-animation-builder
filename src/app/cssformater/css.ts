@@ -175,18 +175,22 @@ export class Css2TsService {
         this.animationArray = []
         for (const keyframeName in this.keyframeObject) {
             if (!this.keyframeObject.hasOwnProperty(keyframeName)) return
+            /**关键帧对象 */
             const keyframe = this.keyframeObject[keyframeName];
             let keyframesStr = '';
-            for (const y in keyframe) {
-                if (!keyframe.hasOwnProperty(y)) return
-                const keyframes = keyframe[y];
+            /**排序好的关键帧偏移 */
+            let keyList = Object.keys(keyframe).sort((a, b) => +a - +b)
+            keyList.forEach((key) => {
+                const keyframes = keyframe[key];
                 keyframesStr += `style({${keyframes.join(',')}}),`
-            }
+            })
+            //doc 多行问题修改
+            keyframesStr = keyframesStr.replace(/\n/g, '')
             keyframesStr = `
-                const ${keyframeName}=animation([
-                    animate('{{animate}}'),keyframes([
+               export const ${keyframeName}=animation([
+                    animate('{{animate}}',keyframes([
                         ${keyframesStr}
-                    ])
+                    ]))
                 ], { params: { animate: '1000ms' }} )
                 `
             this.animationArray.push(keyframesStr)

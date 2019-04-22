@@ -47,7 +47,7 @@ export class AppModule {
   }
   //doc 启动时创建一个自定义元素元素
   ngDoBootstrap() {
-    // let a = document.createElement('custom-root')
-    // document.body.appendChild(a)
+    let a = document.createElement('custom-root')
+    document.body.appendChild(a)
   }
 }
