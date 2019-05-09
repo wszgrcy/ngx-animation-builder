@@ -48,7 +48,7 @@ export class AppModule {
   }
   //doc 启动时创建一个自定义元素元素
   ngDoBootstrap() {
-    if (!environment.production) {
+    if (environment.display) {
       let a = document.createElement('custom-root')
       document.body.appendChild(a)
 

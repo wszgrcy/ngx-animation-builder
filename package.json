@@ -6,6 +6,7 @@
     "start": "ng serve --port 4204",
     "build": "ng build --prod",
     "postbuild":"node ./compress.js",
+    "demo":"ng build --prod --configuration=web-component",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
