@@ -1,6 +1,0 @@
-/* You can add global styles to this file, and also import other style files */
-@import './variable.scss';
-@include mat-core();
-
-/**如果有一个那么直接导入了*/
-@include angular-material-theme($candy-app-theme);

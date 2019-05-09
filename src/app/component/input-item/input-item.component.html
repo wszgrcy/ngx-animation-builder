@@ -1,5 +1,0 @@
-<div (click)="changeStatus(false)">
-  <input type="text" [(ngModel)]="value" name="value" [hidden]="flag.readModel" (blur)="changeStatus(true)" #input
-    (ngModelChange)="valueChange()">
-  <span [hidden]="!flag.readModel" class="mat-button" #readEle>{{value}}</span>
-</div>
