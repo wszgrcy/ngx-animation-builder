@@ -14,6 +14,59 @@
         }
       },
       "architect": {
+        "wcbuild": {
+          "builder": "ngx-build-plus:build",
+          "options": {
+            "outputPath": "dist/ng-animation",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "js",
+                "output": "js"
+              }
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": [
+              {
+                "input": "node_modules/document-register-element/build/document-register-element.js"
+              }
+            ],
+            "optimization": true,
+            "outputHashing": "none",
+            "sourceMap": false,
+            "extractCss": false,
+            "namedChunks": false,
+            "aot": true,
+            "extractLicenses": true,
+            "vendorChunk": false,
+            "buildOptimizer": true,
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "5mb"
+              }
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.demo.ts"
+                }
+              ]
+            }
+          }
+        },
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
@@ -147,6 +200,72 @@
             "exclude": [
               "**/node_modules/**"
             ]
+          }
+        }
+      }
+    },
+    "ng-animation-wc": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:build",
+          "options": {
+            "outputPath": "dist/ng-animation",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "js",
+                "output": "js"
+              }
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": [
+              {
+                "input": "node_modules/document-register-element/build/document-register-element.js"
+              }
+            ],
+            "optimization": true,
+            "outputHashing": "none",
+            "sourceMap": false,
+            "extractCss": false,
+            "namedChunks": false,
+            "aot": true,
+            "extractLicenses": true,
+            "vendorChunk": false,
+            "buildOptimizer": true,
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "5mb"
+              }
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.demo.ts"
+                }
+              ]
+            }
           }
         }
       }
