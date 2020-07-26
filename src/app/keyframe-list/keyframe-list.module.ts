@@ -8,25 +8,25 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 import { InputModule } from '../component/input.module';
+import { CdkScrollableModule } from '@angular/cdk/scrolling';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
-    declarations: [
-        KeyframeItemComponent, KeyframeListComponent
-    ],
-    imports: [
-        CommonModule,
-        MatCardModule,
-        MatInputModule,
-        MatFormFieldModule,
-        FormsModule,
-        SharedModule,
-        FlexLayoutModule,
-        ScrollDispatchModule,
-        InputModule
-    ],
-    exports: [KeyframeListComponent],
-    providers: [],
+  declarations: [KeyframeItemComponent, KeyframeListComponent],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatInputModule,
+    MatFormFieldModule,
+    FormsModule,
+    SharedModule,
+    FlexLayoutModule,
+    InputModule,
+    CdkScrollableModule,
+    ScrollingModule,
+  ],
+  exports: [KeyframeListComponent],
+  providers: [],
 })
-export class KeyframeListModule { }
+export class KeyframeListModule {}
